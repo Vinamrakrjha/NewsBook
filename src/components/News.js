@@ -8,7 +8,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 const News = (props) => {
     const [articles, setArticles] = useState([])
     const [loading, setLoading] = useState(true)
-    const [page, setPage] = useState(1)
+    const [page, setPage] = useState(0)
     const [totalResults, setTotalResults] = useState(0)
 
 
@@ -18,13 +18,13 @@ const News = (props) => {
 
     const update = async () => {
         props.setProgress(10);
-        const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apikey}&page=${page}&pageSize=${props.pageSize}`;
+        const url =`http://api.mediastack.com/v1/news?access_key=${props.apikey}&countries=${props.country}&categories=${props.category}&offset=${page}&limit=${props.pageSize}`;
         let data = await fetch(url);
         props.setProgress(30);
         let dataparsed = await data.json();
         props.setProgress(70);
-        setArticles(dataparsed.articles);
-        setTotalResults(dataparsed.totalResults);
+        setArticles(dataparsed.data);
+        setTotalResults(dataparsed.pagination.total);
         setLoading(false);
         props.setProgress(100);
     }
@@ -37,12 +37,12 @@ const News = (props) => {
 
 
     const fetchMoreData = async () => {
-        const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apikey}&page=${page+1}&pageSize=${props.pageSize}`;
-        setPage(page + 1);
+        const url =`http://api.mediastack.com/v1/news?access_key=${props.apikey}&countries=${props.country}&categories=${props.category}&offset=${page+props.pageSize}&limit=${props.pageSize}`;
+        setPage(page + props.pageSize);
         let data = await fetch(url);
         let dataparsed = await data.json();
-        setArticles(articles.concat(dataparsed.articles));
-        setTotalResults(dataparsed.totalResults);
+        setArticles(articles.concat(dataparsed.data));
+        setTotalResults(dataparsed.pagination.total);
     };
 
     return (
@@ -58,7 +58,7 @@ const News = (props) => {
                     <div className='row'>
                         {articles.map((element) => {
                             return <div className="col-md-4" key={element.url} >
-                                <NewsItem title={element.title ? element.title : ""} description={element.description ? element.description : ""} imageUrl={element.urlToImage} newsUrl={element.url} author={element.author} date={element.publishedAt} source={element.source.name} />
+                                <NewsItem title={element.title ? element.title : ""} description={element.description ? element.description : ""} imageUrl={element.image} newsUrl={element.url} author={element.author} date={element.published_at} source={element.source ? element.source : "Unknown"} />
                             </div>
                         })}
                     </div>

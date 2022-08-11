@@ -26,14 +26,14 @@ const App =()=> {
             progress={progress}
           />
           <Routes>
-            <Route exact path="/" element={<News apikey = {apikey} setProgress = {setProgress} key="general" pageSize={pageSize} country={"in"} category={"general"} />} />
-            <Route exact path="/general" element={<News apikey = {apikey} setProgress = {setProgress} key="general" pageSize={pageSize} country={"in"} category={"general"} />} />
-            <Route exact path="/entertainment" element={<News apikey = {apikey} setProgress = {setProgress} key="entertainment" pageSize={pageSize} country={"in"} category={"entertainment"} />} />
-            <Route exact path="/business" element={<News apikey = {apikey} setProgress = {setProgress} key="business" pageSize={pageSize} country={"in"} category={"business"} />} />
-            <Route exact path="/health" element={<News apikey = {apikey} setProgress = {setProgress} key="health" pageSize={pageSize} country={"in"} category={"health"} />} />
-            <Route exact path="/science" element={<News apikey = {apikey} setProgress = {setProgress} key="science" pageSize={pageSize} country={"in"} category={"science"} />} />
-            <Route exact path="/sports" element={<News apikey = {apikey} setProgress = {setProgress} key="sports" pageSize={pageSize} country={"in"} category={"sports"} />} />
-            <Route exact path="/technology" element={<News apikey = {apikey} setProgress = {setProgress} key="technology" pageSize={pageSize} country={"in"} category={"technology"} />} />
+            <Route exact path="/" element={<News apikey = {apikey} setProgress = {setProgress} key="general" pageSize={pageSize} country={"us"} category={"general"} />} />
+            <Route exact path="/general" element={<News apikey = {apikey} setProgress = {setProgress} key="general" pageSize={pageSize} country={"us"} category={"general"} />} />
+            <Route exact path="/entertainment" element={<News apikey = {apikey} setProgress = {setProgress} key="entertainment" pageSize={pageSize} country={"us"} category={"entertainment"} />} />
+            <Route exact path="/business" element={<News apikey = {apikey} setProgress = {setProgress} key="business" pageSize={pageSize} country={"us"} category={"business"} />} />
+            <Route exact path="/health" element={<News apikey = {apikey} setProgress = {setProgress} key="health" pageSize={pageSize} country={"us"} category={"health"} />} />
+            <Route exact path="/science" element={<News apikey = {apikey} setProgress = {setProgress} key="science" pageSize={pageSize} country={"us"} category={"science"} />} />
+            <Route exact path="/sports" element={<News apikey = {apikey} setProgress = {setProgress} key="sports" pageSize={pageSize} country={"us"} category={"sports"} />} />
+            <Route exact path="/technology" element={<News apikey = {apikey} setProgress = {setProgress} key="technology" pageSize={pageSize} country={"us"} category={"technology"} />} />
           </Routes>
         </Router>
       </>
